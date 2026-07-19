@@ -1,0 +1,6 @@
+U = Untracked
+M = Modified
+A = Added (staged)
+D = Deleted
+R = Renamed
+C = Conflict
