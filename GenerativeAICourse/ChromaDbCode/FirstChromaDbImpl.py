@@ -27,6 +27,6 @@ add_result =vector_store.add_documents(chunks)
 result =vector_store.get(include=['documents','embeddings','metadatas'])
 #print(result)
 
-query_result = "who won Dadasaheb Phalke Award"
-result_select=vector_store.similarity_search(query_result,k=2)
+query_result = "Dadasaheb Phalke Award winner"
+result_select=vector_store.similarity_search_with_score(query_result,k=2)
 print(result_select)
