@@ -9,3 +9,4 @@ embeddings = OpenAIEmbeddings(model="text-embedding-3-large",dimensions=32)
 results = embeddings.embed_documents(query)
 print(results)
 print(len(results[0]))
+
