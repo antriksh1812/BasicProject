@@ -14,15 +14,21 @@ document = loader.load()
 
 #Do the text splitting
 
-splitter = RecursiveCharacterTextSplitter(chunk_size=450,chunk_overlap=0)
+splitter = RecursiveCharacterTextSplitter(chunk_size=200,chunk_overlap=0)
 chunks = splitter.split_documents(document)
 
 #Create a vector store
-embeddings = OpenAIEmbeddings(model="text-embedding-3-large",dimensions=32)
-results = embeddings.embed_documents([chunk.page_content for chunk in chunks])
+embeddings = OpenAIEmbeddings(model="text-embedding-3-large",dimensions=1024)
+
 
 db=FAISS.from_documents(chunks,embeddings)
+db.save_local("/Users/antrikshtyagi/Workspace/Projects/BasicProject/GenerativeAICourse/FAISS-Implementation/FAISS_Indexing")
+db_new = db.load_local('/Users/antrikshtyagi/Workspace/Projects/BasicProject/GenerativeAICourse/FAISS-Implementation/FAISS_Indexing',embeddings,allow_dangerous_deserialization=True)
 
-query_result = "Dadasaheb Phalke Award winner"
-result_select=db.similarity_search_with_score(query_result,k=2)
+#print(type(db))
+query_result = "who is called as King of Bollywood"
+result_select=db_new.similarity_search(query_result,k=1)
 print(result_select)
+
+
+
