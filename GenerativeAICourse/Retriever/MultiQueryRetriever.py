@@ -6,7 +6,7 @@ import logging
 
 
 load_dotenv()  
-llm = ChatOpenAI(model='gpt-3.5-turbo',temperature=1)
+llm = ChatOpenAI(model='gpt-3.5-turbo',temperature=0)
 embeddings = OpenAIEmbeddings()
 docs =[
         'Eat Fruit to imporove gut health',
@@ -17,9 +17,8 @@ docs =[
       ]
 vector_store = FAISS.from_texts(docs,embeddings)
 mqr = MultiQueryRetriever.from_llm(retriever=vector_store.as_retriever(),llm=llm)
-result = mqr.invoke('How can I  stay healthy')
-logging.basicConfig()
-logging.getLogger("langchain.retrievers.multi_query").setLevel(logging.INFO)
+result = mqr.invoke('How can I  stay fit')
+
 print('Multi Query Results')
 for i,result in enumerate(result):
     print(result)
