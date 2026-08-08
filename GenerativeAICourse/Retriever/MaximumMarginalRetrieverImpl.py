@@ -6,6 +6,8 @@ load_dotenv();
 
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large",dimensions=1024);
 
+#AlternateApproach  Text--->TextL
+
 docs =[
          'India is a multicultural country and having multiple states',
          'Each State has their own culture',
