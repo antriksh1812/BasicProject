@@ -83,7 +83,7 @@ embeding = getEmbeddingObj('text-embedding-3-large');
 
 db = insertVectorStore(embeding,chunks)
 retriever = db.as_retriever(seach_kwargs={'k':4})
-query="What is juice"
+query="What is RAG?"
 context = retriever.invoke(query)
 intial_template ='''You are helpful assistance .Answer from the folloing context
  if the context is insufficient or irrelevant then say I dont know {context} question {question}'''
