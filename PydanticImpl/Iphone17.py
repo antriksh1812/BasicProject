@@ -18,6 +18,16 @@ premium, reliable, and powerful smartphone, although its price may be a major
 consideration.
 '''
 
+from langchain_openai import ChatOpenAI
+
+qry ="You are a smart assistant . Give me some details about Iphone17.Give me some pros and cons of the Iphone17." 
+llm = ChatOpenAI(model='gpt-5.4-mini',temperature=0) 
+response=llm.invoke(qry)
+#print(response.content)
+
+
+
+
 class Review(BaseModel):
     Product : str =Field(description="Name of the product mentioned in description",default="None")
     ProductCons : list[str]=Field(description="All the negative features of the product")
@@ -25,8 +35,6 @@ class Review(BaseModel):
 
 
 llm = ChatOpenAI(model='gpt-3.5-turbo',temperature=0.2)
-
 structure = llm.with_structured_output(Review)
-result = structure.invoke(reviewStr)
-
+result = structure.invoke(response.content)
 print(result.json())
